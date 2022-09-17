@@ -39,16 +39,16 @@ class App extends GetView<BottomNavController> {
               BottomNavigationBarItem(
                 icon: ImageData(IconsPath.searchOff),
                 activeIcon: ImageData(IconsPath.searchOn),
-                label: 'Home',
+                label: 'Search',
               ),
               BottomNavigationBarItem(
                 icon: ImageData(IconsPath.uploadIcon),
-                label: 'Home',
+                label: 'Upload',
               ),
               BottomNavigationBarItem(
                 icon: ImageData(IconsPath.activeOff),
                 activeIcon: ImageData(IconsPath.activeOn),
-                label: 'Home',
+                label: 'Activity',
               ),
               BottomNavigationBarItem(
                 icon: Container(
@@ -59,7 +59,7 @@ class App extends GetView<BottomNavController> {
                     color: Colors.grey,
                   ),
                 ),
-                label: 'Home',
+                label: 'MyPage',
               ),
             ],
           ),
