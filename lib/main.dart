@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
         // useMaterial3: true,
         primarySwatch: Colors.blue,
         appBarTheme: const AppBarTheme(
-          backgroundColor: Colors.white,
+          backgroundColor: Color.fromARGB(255, 24, 123, 162),
           titleTextStyle: TextStyle(
             color: Colors.black,
           ),
