@@ -10,6 +10,7 @@ class App extends GetView<BottomNavController> {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
+      onWillPop: controller.gotoBack,
       child: Obx(
         () => Scaffold(
           appBar: AppBar(),
@@ -25,8 +26,8 @@ class App extends GetView<BottomNavController> {
           ),
           bottomNavigationBar: BottomNavigationBar(
             type: BottomNavigationBarType.shifting,
-            showSelectedLabels: false,
-            showUnselectedLabels: false,
+            showSelectedLabels: true,
+            showUnselectedLabels: true,
             currentIndex: controller.pageIndex.value,
             onTap: controller.changeBottomNav,
             elevation: 0,
@@ -65,9 +66,6 @@ class App extends GetView<BottomNavController> {
           ),
         ),
       ),
-      onWillPop: () async {
-        return true;
-      },
     );
   }
 }
