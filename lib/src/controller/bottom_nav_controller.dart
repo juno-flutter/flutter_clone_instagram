@@ -48,13 +48,13 @@ class BottomNavController extends GetxController {
     }
   }
 
-  Future<bool> gotoBack() async {
+  Future<bool> goBack() async {
     if (selectedBottomNavHistory.length == 1) {
       showDialog(
         context: Get.context!,
         builder: (context) {
           return AlertDialog(
-            alignment: Alignment.bottomCenter,
+            alignment: Alignment.center,
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
             //Dialog Main Title
             title: Column(
@@ -80,29 +80,28 @@ class BottomNavController extends GetxController {
                 children: [
                   TextButton(
                     style: ButtonStyle(
+                      elevation: MaterialStateProperty.all(2),
+                      shadowColor: MaterialStateProperty.resolveWith((states) => Colors.grey),
                       foregroundColor: MaterialStateProperty.resolveWith((states) {
-                        // If the button is pressed, return green, otherwise blue
                         if (states.contains(MaterialState.pressed)) {
                           return Colors.black;
                         }
-                        return Colors.white;
+                        return Colors.black;
                       }),
                       backgroundColor: MaterialStateProperty.resolveWith((states) {
-                        // If the button is pressed, return green, otherwise blue
                         if (states.contains(MaterialState.pressed)) {
-                          return Colors.green;
+                          return Colors.grey;
                         }
-                        return Colors.blue;
+                        return Colors.yellow;
                       }),
                       textStyle: MaterialStateProperty.resolveWith((states) {
-                        // If the button is pressed, return size 40, otherwise 20
                         if (states.contains(MaterialState.pressed)) {
-                          return const TextStyle(fontSize: 18);
+                          return const TextStyle(fontSize: 60, fontWeight: FontWeight.bold);
                         }
-                        return const TextStyle(fontSize: 15);
+                        return const TextStyle(fontSize: 15, fontWeight: FontWeight.normal);
                       }),
                     ),
-                    child: const Text("Changing Button"),
+                    child: const Text("  예  "),
                     onPressed: () {},
                   ),
                   ElevatedButton(

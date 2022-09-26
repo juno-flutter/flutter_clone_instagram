@@ -17,14 +17,15 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         // useMaterial3: true,
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.blueGrey,
         appBarTheme: const AppBarTheme(
-          backgroundColor: Color.fromARGB(255, 24, 123, 162),
+          backgroundColor: Colors.white,
           titleTextStyle: TextStyle(
             color: Colors.black,
           ),
         ),
       ),
+      debugShowCheckedModeBanner: false,
       initialBinding: InitBinding(),
       home: const App(),
     );
