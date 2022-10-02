@@ -15,6 +15,9 @@ enum PageName { home, search, upload, activity, mypage }
 class BottomNavController extends GetxController {
   RxInt pageIndex = 0.obs;
   List<int> selectedBottomNavHistory = [0];
+  GlobalKey<NavigatorState> searchPageNavigationKey = GlobalKey<NavigatorState>();
+
+  static BottomNavController get to => Get.find();
 
   void changeBottomNav(int value) {
     var page = PageName.values[value];
@@ -117,6 +120,12 @@ class BottomNavController extends GetxController {
         },
       );
       return true;
+    }
+
+    var page = PageName.values[selectedBottomNavHistory.last];
+    if (page == PageName.search) {
+      var value = await searchPageNavigationKey.currentState!.maybePop();
+      if (value) return false;
     }
 
     selectedBottomNavHistory.removeLast();

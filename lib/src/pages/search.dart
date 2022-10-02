@@ -39,7 +39,7 @@ class _SearchState extends State<Search> {
 
   @override
   void initState() {
-    const maxRandom = 4;
+    const maxRandom = 5;
 
     for (int i = 0; i < 50; i++) {
       var probability = Random().nextInt(maxRandom).toDouble() + 1;
@@ -59,12 +59,20 @@ class _SearchState extends State<Search> {
       children: [
         Expanded(
           child: GestureDetector(
-            onTap: () => Get.to(
-              () => const SearchFocus(),
-              transition: Transition.leftToRight,
-              curve: Curves.easeInOutBack,
-              duration: const Duration(milliseconds: 500),
-            ),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const SearchFocus(),
+                ),
+              );
+            },
+            // onTap: () => Get.to(
+            //   () => const SearchFocus(),
+            //   transition: Transition.leftToRight,
+            //   curve: Curves.easeInOutBack,
+            //   duration: const Duration(milliseconds: 500),
+            // ),
             child: Container(
               margin: const EdgeInsets.symmetric(
                 vertical: 10,

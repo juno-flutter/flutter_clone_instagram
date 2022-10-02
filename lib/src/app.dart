@@ -3,6 +3,7 @@ import 'package:flutter_clone_instagram/src/components/image_data.dart';
 import 'package:flutter_clone_instagram/src/controller/bottom_nav_controller.dart';
 import 'package:flutter_clone_instagram/src/pages/home.dart';
 import 'package:flutter_clone_instagram/src/pages/search.dart';
+import 'package:flutter_clone_instagram/src/pages/upload.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
 
@@ -15,19 +16,22 @@ class App extends GetView<BottomNavController> {
       onWillPop: controller.goBack,
       child: Obx(
         () => Scaffold(
-          body: Center(
-            child: Center(
-              child: IndexedStack(
-                index: controller.pageIndex.value,
-                children: [
-                  const Home(),
-                  Search(),
-                  const Center(child: Text('UPLOAD')),
-                  const Center(child: Text('ACTIVITY')),
-                  const Center(child: Text('MYPAGE')),
-                ],
+          body: IndexedStack(
+            index: controller.pageIndex.value,
+            children: [
+              const Home(),
+              Navigator(
+                key: controller.searchPageNavigationKey,
+                onGenerateRoute: (routeSetting) {
+                  return MaterialPageRoute(
+                    builder: (context) => Search(),
+                  );
+                },
               ),
-            ),
+              const Upload(),
+              const Center(child: Text('ACTIVITY')),
+              const Center(child: Text('MYPAGE')),
+            ],
           ),
           bottomNavigationBar: BottomNavigationBar(
             type: BottomNavigationBarType.fixed,
@@ -35,10 +39,12 @@ class App extends GetView<BottomNavController> {
             showUnselectedLabels: true,
             currentIndex: controller.pageIndex.value,
             onTap: controller.changeBottomNav,
-            elevation: 0,
+            // elevation: 15,
             unselectedFontSize: 10,
             selectedItemColor: Colors.black,
-            selectedLabelStyle: const TextStyle(fontWeight: FontWeight.bold,),
+            selectedLabelStyle: const TextStyle(
+              fontWeight: FontWeight.bold,
+            ),
             items: [
               BottomNavigationBarItem(
                 icon: ImageData(IconsPath.homeOff),

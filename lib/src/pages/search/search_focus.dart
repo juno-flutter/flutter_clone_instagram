@@ -1,6 +1,7 @@
 // import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_clone_instagram/src/components/image_data.dart';
+import 'package:flutter_clone_instagram/src/controller/bottom_nav_controller.dart';
 import 'package:get/get.dart';
 
 class SearchFocus extends StatefulWidget {
@@ -12,6 +13,7 @@ class SearchFocus extends StatefulWidget {
 
 class _SearchFocusState extends State<SearchFocus> with TickerProviderStateMixin {
   late TabController tabController;
+  static const lightGrey = Color(0xffe4e4e4);
 
   @override
   void initState() {
@@ -34,7 +36,10 @@ class _SearchFocusState extends State<SearchFocus> with TickerProviderStateMixin
         leading: Container(
           padding: const EdgeInsets.all(15),
           child: GestureDetector(
-            onTap: () => Get.back(),
+            onTap: () => BottomNavController.to.goBack()
+            // Get.find<BottomNavController>().goBack();
+            ,
+            // onTap: () => Get.back(),
             child: ImageData(IconsPath.backBtnIcon),
           ),
         ),
@@ -58,14 +63,11 @@ class _SearchFocusState extends State<SearchFocus> with TickerProviderStateMixin
           preferredSize: Size.fromHeight(AppBar().preferredSize.height),
           child: Container(
             // padding: const EdgeInsets.symmetric(vertical: 5),
-            decoration: const BoxDecoration(
-              border: Border(bottom: BorderSide(color: Color(0xffe4e4e4))),
-              // color: Colors.grey.shade50,
-            ),
+            decoration: const BoxDecoration(border: Border(bottom: BorderSide(color: lightGrey))),
             // width: Size.infinite.width,
             height: AppBar().preferredSize.height,
             child: TabBar(
-              indicatorWeight: 2,
+              // indicatorWeight: 2,
               indicator: BoxDecoration(
                 borderRadius: BorderRadius.circular(100),
                 // border: Border.symmetric(vertical: BorderSide(color: Colors.blue, width: 5)),
@@ -102,7 +104,7 @@ Widget tabMenuOne(String menu) {
     child: Text(
       menu,
       style: const TextStyle(
-        fontSize: 17,
+        fontSize: 16,
         fontWeight: FontWeight.bold,
       ),
     ),
