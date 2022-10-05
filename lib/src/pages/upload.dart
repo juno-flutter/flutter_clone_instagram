@@ -3,9 +3,12 @@
 
 import 'dart:typed_data';
 
-import 'package:flutter/foundation.dart';
+// import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_clone_instagram/src/components/image_data.dart';
+import 'package:get/get.dart';
+
+// import 'package:get/get_core/src/get_main.dart';
 import 'package:photo_manager/photo_manager.dart';
 // import 'package:get/get.dart';
 
@@ -38,7 +41,9 @@ class _UploadState extends State<Upload> {
         backgroundColor: Colors.white,
         elevation: 0,
         leading: GestureDetector(
-          onTap: () {},
+          onTap: () {
+            Get.back();
+          },
           child: Padding(
             padding: const EdgeInsets.all(15.0),
             child: ImageData(
@@ -64,14 +69,16 @@ class _UploadState extends State<Upload> {
           )
         ],
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            _imagePreview(),
-            _header(),
-            _imageSelectView(),
-          ],
-        ),
+      body: Column(
+        children: [
+          _imagePreview(),
+          _header(),
+          Expanded(
+            child: SingleChildScrollView(
+              child: _imageSelectView(),
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -86,16 +93,9 @@ class _UploadState extends State<Upload> {
       color: Colors.grey.shade300,
       child: selectedImage == null
           ? Container()
-          : _photoWidget(
-              selectedImage!,
-              Size(size, size),
-              builder: (data) {
-                return Image.memory(
-                  data,
-                  fit: BoxFit.cover,
-                );
-              },
-            ),
+          : _photoWidget(selectedImage!, Size(size, size), builder: (data) {
+              return Image.memory(data, fit: BoxFit.cover);
+            }),
     );
   }
 
@@ -119,7 +119,10 @@ class _UploadState extends State<Upload> {
                   padding: const EdgeInsets.all(10),
                   child: Column(
                     children: [
-                      const Icon(Icons.arrow_drop_down),
+                      GestureDetector(
+                        onTap: () {Get.back();},
+                        child: const Icon(Icons.arrow_drop_down),
+                      ),
                       Expanded(
                         child: SingleChildScrollView(
                           child: Column(
@@ -191,14 +194,14 @@ class _UploadState extends State<Upload> {
                 child: ImageData(IconsPath.cameraIcon),
               )
             ],
-          )
+          ),
         ],
       ),
     );
   }
 
   Widget _imageSelectView() {
-    var size = 50.0;
+    var size = 200.0;
     return GridView.builder(
       physics: const NeverScrollableScrollPhysics(),
       shrinkWrap: true,

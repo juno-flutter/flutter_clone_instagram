@@ -37,7 +37,7 @@ class AvatarWidget extends StatelessWidget {
 
   Widget type1Avatar() {
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 4),
+      margin: const EdgeInsets.symmetric(horizontal: 5),
       padding: const EdgeInsets.all(2),
       decoration: const BoxDecoration(
         shape: BoxShape.circle,
@@ -83,7 +83,13 @@ class AvatarWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
         type1Avatar(),
-        Text(nickname ?? '', style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold,),),
+        Text(
+          nickname ?? '',
+          style: const TextStyle(
+            fontSize: 15,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
       ],
     );
   }

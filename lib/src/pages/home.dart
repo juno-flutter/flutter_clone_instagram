@@ -6,7 +6,9 @@ import 'package:flutter_clone_instagram/src/components/image_data.dart';
 import '../components/post_widget.dart';
 
 class Home extends StatelessWidget {
-  const Home({Key? key}) : super(key: key);
+  Home({Key? key}) : super(key: key);
+  final ScrollController _scrollController1 = ScrollController();
+  final ScrollController _scrollController2 = ScrollController();
 
   @override
   Widget build(BuildContext context) {
@@ -29,9 +31,14 @@ class Home extends StatelessWidget {
           )
         ],
       ),
-      body: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 5),
+      body: Scrollbar(
+        interactive: true,
+        trackVisibility: true,
+        thickness: 10,
+        radius: const Radius.circular(5),
+        controller: _scrollController1,
         child: ListView(
+          controller: _scrollController1,
           children: [
             _storyBoardList(),
             _postList(),
@@ -47,9 +54,11 @@ class Home extends StatelessWidget {
       trackVisibility: true,
       thickness: 5,
       radius: const Radius.circular(2.5),
+      controller: _scrollController2,
       child: SingleChildScrollView(
         padding: const EdgeInsets.only(bottom: 10),
         scrollDirection: Axis.horizontal,
+        controller: _scrollController2,
         child: Row(
           children: [
             _myStoryAvatar(),

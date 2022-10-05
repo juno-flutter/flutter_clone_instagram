@@ -20,6 +20,7 @@ class _SearchState extends State<Search> {
   final List<double> widgetHeights = [];
   final List<Color> widgetColors = [];
   final crossAxisCount = 3;
+  final ScrollController _scrollController1 = ScrollController();
 
   @override
   Widget build(BuildContext context) {
@@ -113,29 +114,38 @@ class _SearchState extends State<Search> {
   }
 
   Widget _body() {
-    return MasonryGridView.count(
-      padding: const EdgeInsets.symmetric(horizontal: 2),
-      crossAxisCount: crossAxisCount,
-      // mainAxisSpacing: 3,
-      // crossAxisSpacing: 3,
-      itemCount: 50,
-      itemBuilder: (context, index) {
-        return SizedBox(
-          height: widgetHeights[index],
-          child: Padding(
-            padding: const EdgeInsets.all(2.0),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(7),
-              child: CachedNetworkImage(
-                fadeInCurve: Curves.easeInOut,
-                fadeInDuration: const Duration(seconds: 1),
-                imageUrl: 'https://img.segye.com/content/image/2015/04/17/20150417002357_0.jpg',
-                fit: BoxFit.cover,
+    return Scrollbar(
+      interactive: true,
+      trackVisibility: true,
+      thickness: 10,
+      radius: const Radius.circular(5),
+      controller: _scrollController1,
+      child: MasonryGridView.count(
+        controller: _scrollController1,
+        padding: const EdgeInsets.symmetric(horizontal: 2),
+        crossAxisCount: crossAxisCount,
+        // mainAxisSpacing: 3,
+        // crossAxisSpacing: 3,
+        itemCount: 50,
+        itemBuilder: (context, index) {
+          return SizedBox(
+            height: widgetHeights[index],
+            child: Padding(
+              padding: const EdgeInsets.all(2.0),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(7),
+                child: CachedNetworkImage(
+                  fadeInCurve: Curves.easeInOut,
+                  fadeInDuration: const Duration(seconds: 1),
+                  imageUrl: 'https://static.independent.co.uk/2022/04/25/11/shutterstock_editorial_5886072au%20copy.jpg?quality=75&width=990&auto=webp&crop=982:726,smart',
+                  // imageUrl: 'https://img.segye.com/content/image/2015/04/17/20150417002357_0.jpg',
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
-          ),
-        );
-      },
+          );
+        },
+      ),
     );
   }
 }

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_clone_instagram/src/components/image_data.dart';
 import 'package:flutter_clone_instagram/src/controller/bottom_nav_controller.dart';
+import 'package:flutter_clone_instagram/src/pages/active_history.dart';
 import 'package:flutter_clone_instagram/src/pages/home.dart';
 import 'package:flutter_clone_instagram/src/pages/search.dart';
-import 'package:flutter_clone_instagram/src/pages/upload.dart';
+// import 'package:flutter_clone_instagram/src/pages/upload.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
 
@@ -19,7 +20,7 @@ class App extends GetView<BottomNavController> {
           body: IndexedStack(
             index: controller.pageIndex.value,
             children: [
-              const Home(),
+              Home(),
               Navigator(
                 key: controller.searchPageNavigationKey,
                 onGenerateRoute: (routeSetting) {
@@ -28,8 +29,9 @@ class App extends GetView<BottomNavController> {
                   );
                 },
               ),
-              const Upload(),
-              const Center(child: Text('ACTIVITY')),
+              // const Upload(),
+              Container(),
+              ActiveHistory(),
               const Center(child: Text('MYPAGE')),
             ],
           ),
